@@ -1,0 +1,14 @@
+ifeq "$(CFG)" "Release"
+
+    # Hardware specifying flags
+    #CFLAGS += -march=armv7-a -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp #-mcpu=cortex-a8	# Default Arm
+    CFLAGS += -mtune=arm1176jzf-s -mfpu=vfp -mfloat-abi=hard					# Raspberry Pi 1
+    #CFLAGS += -march=armv7-a -mtune=cortex-a7 -mfpu=neon -mfloat-abi=hard			# Raspberry Pi 2
+
+    # Optimization level, minus currently buggy optimizing methods (which break bit-exact)
+    CFLAGS += -O3 -fno-tree-pre -fno-strict-aliasing
+
+    # More optimization flags
+    CFLAGS += -ftree-vectorize -ffast-math -funsafe-math-optimizations -fsingle-precision-constant
+
+endif
